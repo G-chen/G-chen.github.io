@@ -18,19 +18,9 @@
 
 
 
+	<meta name="keywords" content="JSON," />
 
-    <meta name="keywords" content="Hexo,next" />
-
-
-
-
-
-    <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.1" />
-
-
-
-
-  <title> Hello World // TortoiseChen' blog </title>
+  <title> 浅谈JSON // TortoiseChen' blog </title>
 </head>
 
 <body>
@@ -107,7 +97,7 @@
           
           
             
-              Hello World
+              浅谈JSON
             
           
         </h1>
@@ -116,11 +106,22 @@
       <div class="post-meta">
         <span class="post-time">
           
-            发表于 2015-04-03
+            发表于 2015-04-05
           
         </span>
 
         
+          
+            <span class="post-category">
+              &nbsp; | &nbsp; 分类于
+              
+                <a href="/categories/前端/">前端</a>
+
+                
+                
+
+              
+            </span>
           
         
 
@@ -128,8 +129,8 @@
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/2015/04/03/hello-world/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/04/03/hello-world/"></span>
+            <a href="/2015/04/05/浅谈JSON/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2015/04/05/浅谈JSON/"></span>
             </a>
           </span>
           
@@ -144,16 +145,29 @@
         
 
         
-          <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+          <h3 id="JSON是什么？">JSON是什么？</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JSON是JavaScript对象表示法（JavaScript Object Notation），是一种轻量级的数据交换格式，独立于语言和平台，基本的表示如下：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	"name": "Mike",</span><br><span class="line">	"age": 30</span><br><span class="line">&#125;</span><br><span class="line">&#123;</span><br><span class="line">	"first": &#123;</span><br><span class="line">    	"name": "Mike",</span><br><span class="line">        "age": 30</span><br><span class="line">    &#125;,</span><br><span class="line">    "second"： &#123;</span><br><span class="line">    	"name": "Json",</span><br><span class="line">        "age": 20</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <a id="more"></a>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+<h3 id="JSON的四个基本规则">JSON的四个基本规则</h3><ol>
+<li>并列的数据之间用逗号(“,”)分隔；</li>
+<li>映射用冒号(“:”)表示；</li>
+<li>映射的集合(对象)用大括号(“{}”)表示；</li>
+<li>并列数据的集合(数组)用方括号(“[]”)表示。</li>
+</ol>
+<h3 id="JSON的值">JSON的值</h3><ol>
+<li>数字(整数或浮点数)；</li>
+<li>字符串(包含在双引号中)；</li>
+<li>逻辑值(true 或 false)；</li>
+<li>数组(包含在方括号中)；</li>
+<li>对象(包含在花括号中)；</li>
+<li>null。</li>
+</ol>
+<h3 id="对象转换为JSON">对象转换为JSON</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对象转换为 JSON 数据时，只转换公有变量，私有变量不转换，例如PHP中：</p>
+<ol>
+<li>public，表示公有的，全局的，类的内部外部子类都可以访问；</li>
+<li>private，表示受保护的，只有本类、子类或父类中可以访问；</li>
+<li>protected，表示私有的，只有本类内部可以访问。</li>
+</ol>
+<h3 id="例子">例子</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关于JSON的例子，大家可以参考<a href="http://blog.sina.com.cn/s/blog_636f2d150101f0b4.html" target="_blank" rel="external">JQuery处理json与ajax返回JSON实例</a>，里面有两个实例，我觉得写得还是蛮易懂的，大家也可以在自己的电脑上试试效果，^_~</p>
 
         
       </div>
@@ -162,16 +176,24 @@
     
       <div class="post-footer">
         
+          <div class="post-tags">
+            
+              <a href="/tags/JSON/">
+                #JSON
+              </a>
+            
+          </div>
+        
 
         
           <div class="post-nav">
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/2015/04/04/初探Less/">初探Less</a>
-              
             </div>
 
             <div class="post-nav-next post-nav-item">
+              
+                <a href="/2015/04/04/初探Less/">初探Less</a>
               
             </div>
           </div>
@@ -188,8 +210,8 @@
   
     <div class="comments" id="comments">
       
-        <div class="ds-thread" data-thread-key="2015/04/03/hello-world/"
-             data-title="Hello World" data-url="http://yoursite.com/2015/04/03/hello-world/">
+        <div class="ds-thread" data-thread-key="2015/04/05/浅谈JSON/"
+             data-title="浅谈JSON" data-url="http://yoursite.com/2015/04/05/浅谈JSON/">
         </div>
 
       
@@ -271,7 +293,7 @@
         <div class="post-toc">
           
           
-            <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick_Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create_a_new_post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run_server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate_static_files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy_to_remote_sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+            <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#JSON是什么？"><span class="nav-number">1.</span> <span class="nav-text">JSON是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSON的四个基本规则"><span class="nav-number">2.</span> <span class="nav-text">JSON的四个基本规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSON的值"><span class="nav-number">3.</span> <span class="nav-text">JSON的值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象转换为JSON"><span class="nav-number">4.</span> <span class="nav-text">对象转换为JSON</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子"><span class="nav-number">5.</span> <span class="nav-text">例子</span></a></li></ol></div>
           
         </div>
         <div class="post-toc-indicator-bottom post-toc-indicator"></div>
