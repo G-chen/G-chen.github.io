@@ -161,44 +161,12 @@
 
         
           
-            <h5 id="接上文_^_~">接上文 ^_~</h5><h5 id="window-onload">window.onload</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;想让某个函数(例如：function1)在页面加载完毕之后立刻执行，则可用<code>window.onload = function1;</code>。<br>当有多个函数需要页面加载时执行时，像下面的做法是不可行的，只有最后那个才会被实际执行。<br><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onload = firstFunction;</span><br><span class="line"><span class="built_in">window</span>.onload = secondFunction;</span><br></pre></td></tr></table></figure></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当需要绑定的函数不是很多时，可以采用下面的最简单的解决方法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">    firstFunction();</span><br><span class="line">    seconeFunction();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最好的办法是为其添加一个处理函数，把那些在页面加载完毕时需要执行的函数创建为一个队列，把相应的函数添加到队列中就行了。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addLoadEvent</span><span class="params">(func)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> oldonload = <span class="built_in">window</span>.onload;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> <span class="built_in">window</span>.onload != <span class="string">"function"</span>) &#123;</span><br><span class="line">        <span class="built_in">window</span>.onload = func;</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            oldonload();</span><br><span class="line">            func();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//将需要在页面加载完毕时执行的函数添加到队列中</span></span><br><span class="line">addLoadEvent(firstFunction);</span><br><span class="line">addLoadEvent(seconeFunction);</span><br></pre></td></tr></table></figure></p>
-<h5 id="在已有元素后插入一个新元素">在已有元素后插入一个新元素</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DOM 提供了在已有元素之前插入一个新元素的方法<code>insertBefore</code>，并没有提供在后面插入的方法，不过可以利用已有的DOM方法和属性编写一个<code>insertAfter</code>函数：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">insertAfter</span><span class="params">(newElement, targetElement)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> <span class="keyword">parent</span> = targetElement.parentNode;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">parent</span>.lastChild == targetElement) &#123;</span><br><span class="line">        <span class="keyword">parent</span>.appendChild(newElement);</span><br><span class="line">    &#125;eles&#123;</span><br><span class="line">        <span class="keyword">parent</span>.insertBefore(newElement, target.nextSibling);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h5 id="style">style</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>element.style.property</code>只能返回内嵌样式，DOM style 属性并不能检索在外部 CSS 文件里声明的样式，头部中<code>&lt;style&gt;</code>标签里的样式也不可以。</p>
-<h5 id="寻找下一个元素节点">寻找下一个元素节点</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;像上面所说的，文本节点也是属于节点，有时用nextSibling 找到的下一个节点可能不是我们想要的元素节点，就可以通过下面的函数来获取相应的元素节点。<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getNextElement</span><span class="params">(node)</span> </span>&#123;</span><br><span class="line">	<span class="comment">//元素节点的 nodeType 属性值是1</span></span><br><span class="line">    <span class="keyword">if</span>(node.nodeType == <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> node;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(node.nextSibling)&#123;</span><br><span class="line">        <span class="keyword">return</span> getNextElement(node.nextSibling);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h5 id="为元素添加类名_addClass">为元素添加类名 addClass</h5><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">function <span class="title">addClass</span><span class="params">(element, <span class="keyword">value</span>)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!element.className) &#123;</span><br><span class="line">        element.className = <span class="keyword">value</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> newClassName = element.className;</span><br><span class="line">        newClassName += <span class="string">" "</span>;</span><br><span class="line">        newClassName += <span class="keyword">value</span>;</span><br><span class="line">        element.className = newClassName;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="浮点数取整">浮点数取整</h5><ol>
-<li>Math.ceil，把浮点数向大于反向舍入为与之最接近的整数；</li>
-<li>Math.floor，把浮点数向小于反向舍入为与之最接近的整数；</li>
-<li>Math.round，把浮点数舍入为与之最接近的整数。</li>
-</ol>
-<h5 id="性能考虑">性能考虑</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在JavaScript DOM 编程艺术这本书中，提到的关于性能优化的方法主要是有以下三点：</p>
-<ol>
-<li>尽量少访问 DOM 和尽量减少标记</li>
-<li>合并和放置脚本以减少请求数量<strong><code>注3</code></strong></li>
-<li>压缩脚本</li>
-</ol>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其实，关于性能优化方面，还可以参考一下雅虎14条：</p>
-<ol>
-<li>减少 HTTP 请求次数</li>
-<li>使用 CDN(Content Delivery Network, 内容分发网络)</li>
-<li>增加 Expires Header</li>
-<li>压缩页面元素</li>
-<li>把样式表放在头部</li>
-<li>把脚本文件放在底部</li>
-<li>避免 CSS 表达式</li>
-<li>把 JavaScript 和 CSS 放到外部文件中</li>
-<li>减少 DNS 查询次数</li>
-<li>最小化 JavaScript代码</li>
-<li>避免重定向</li>
-<li>删除重复的脚本文件</li>
-<li>配置 ETags</li>
-<li>缓存 Ajax</li>
-</ol>
-<hr>
-<p>注3：浏览器有并发请求数目的限制，该限制是是针对同一域名的，意即，同一时间针对同一域名下的请求有一定数量限制，超过限制数目的请求会被阻塞，因此减少 HTTP 请求次数十分重要，不同的浏览器有着不同的限制数目。<img src="http://pic4.zhimg.com/ea606d016e8ab77db9d8a8dfa5243a1b_b.jpg" alt=""></p>
-
+            <h5 id="接上文_^_~">接上文 ^_~</h5><h5 id="window-onload">window.onload</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;想让某个函数(例如：function1)在页面加载完毕之后立刻执行，则可用<code>window.onload = function1;</code>。<br>当有多个函数需要页面加载时执行时，像下面的做法是不可行的，只有最后那个才会被实际执行。<br>
+            <div class="post-more-link text-center">
+              <a class="btn" href="/2015/04/18/JavaScript-DOM-编程艺术-读书笔记二/#more">
+                阅读全文 &raquo;
+              </a>
+            </div>
           
         
       </div>
