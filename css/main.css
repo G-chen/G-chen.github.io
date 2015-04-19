@@ -1143,7 +1143,7 @@ body {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #a6d4d1;
+  background: #c8595d;
 }
 .sidebar-nav {
   margin: 0;
@@ -1447,7 +1447,7 @@ body {
 }
 .posts-expand .post-eof {
   display: block;
-  margin: 160px auto 120px;
+  margin: 35px auto 70px;
   width: 8%;
   height: 1px;
   background: #ccc;
